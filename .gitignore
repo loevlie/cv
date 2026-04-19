@@ -31,3 +31,7 @@ variants/*.pdf
 # Backup
 *~
 *.swp
+
+# Quarto build output
+site/_site/
+site/.quarto/
