@@ -1,0 +1,326 @@
+%---------------------------------------------------------------------------
+% Dennis Johan Loevlie -- Academic CV (v5.3 — EB Garamond body)
+% Body: EB Garamond (classical Garamond revival, deeply scholarly, real SC)
+% Headers/dates: IBM Plex Sans
+% URLs: IBM Plex Mono
+% Engine: pdflatex (ebgaramond type1 ships small caps)
+%---------------------------------------------------------------------------
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.55in,top=0.45in,bottom=0.5in]{geometry}
+
+% --- Typography ----------------------------------------------------------
+% EB Garamond: small x-height, scale up notably to balance Plex Sans.
+% osf is default; explicit for clarity.
+\usepackage[scale=1.10,osf]{ebgaramond}
+\usepackage[scale=0.92]{plex-sans}
+\usepackage[scale=0.90]{plex-mono}
+\usepackage[protrusion=true,expansion=true,tracking=true,kerning=true,final]{microtype}
+
+% Single uniform space after periods (modern norm)
+\frenchspacing
+
+% Family helpers
+\newcommand{\sansfam}{\sffamily}
+\newcommand{\monofam}{\ttfamily}
+
+\linespread{1.06}
+\setlength{\parindent}{0pt}
+
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{parskip}
+% Bringhurst vertical rhythm: paragraph spacing as a fraction of the
+% baseline so the grid is consistent. 0.25× baseline keeps density tight
+% on a 2-page target while snapping to the grid the eye reads as "designed."
+\setlength{\parskip}{0.25\baselineskip plus 0.05\baselineskip minus 0.05\baselineskip}
+\usepackage{xspace}
+
+% Palette — defined before hyperref so accentlight is in scope for link colors.
+\definecolor{accent}{HTML}{0A2540}
+\definecolor{accentlight}{HTML}{2563A8}
+\definecolor{body}{HTML}{1A1A1A}
+\definecolor{meta}{HTML}{6B6B6B}
+\definecolor{rule}{HTML}{C8C8C8}
+\color{body}
+
+% Hyperref with full PDF metadata polish — pdfusetitle promotes pdftitle
+% to the PDF window title; bookmarks=true gives Acrobat/Preview a side-
+% panel outline; cmap+glyphtounicode guarantee correct Unicode mapping
+% so screen readers, ATS pipelines, and copy-paste produce real text.
+\usepackage[
+  pdfusetitle,
+  pdfauthor={Dennis Johan Loevlie},
+  pdftitle={Curriculum Vitae --- Dennis Johan Loevlie},
+  pdfsubject={Academic CV},
+  pdfkeywords={machine learning, multimodal foundation models, multiple instance learning, RL post-training, computer vision, medical imaging},
+  pdflang=en-US,
+  hidelinks,
+  bookmarks=true, bookmarksnumbered=false, bookmarksopen=true, bookmarksopenlevel=1,
+  colorlinks=true,
+  urlcolor=accentlight, linkcolor=accentlight, citecolor=accentlight
+]{hyperref}
+\input{glyphtounicode}\pdfgentounicode=1
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{needspace}
+
+% --- Page styles ---------------------------------------------------------
+% First page: empty (no header, no footer).
+% Subsequent pages: small grey identifier top-right.
+\fancypagestyle{cv}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[L]{\sansfam\scriptsize\color{meta}Updated \today}%
+  \fancyfoot[R]{\sansfam\scriptsize\color{meta}%
+    Dennis Loevlie \,\textperiodcentered\, CV \,\textperiodcentered\, %
+    page \thepage\ of \pageref*{LastPage}}
+}
+\fancypagestyle{cvfirst}{
+  \fancyhf{}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[L]{\sansfam\scriptsize\color{meta}Updated \today}%
+  \fancyfoot[R]{\sansfam\scriptsize\color{meta}%
+    Dennis Loevlie \,\textperiodcentered\, CV \,\textperiodcentered\, %
+    page \thepage\ of \pageref*{LastPage}}
+}
+\pagestyle{cv}
+
+% --- Section / subsection ------------------------------------------------
+% v5.3: EB Garamond ships real small caps. Serif SC for section heads.
+\newcommand{\sectiontitle}[1]{\textls[80]{\textsc{#1}}}
+\titleformat{\section}
+  [block]
+  {\footnotesize\bfseries\color{accent}}
+  {}{0em}{\sectiontitle}[\vspace{1pt}{\color{rule}\titlerule[0.4pt]}]
+% Section spacing as baseline multiples for grid consistency.
+\titlespacing*{\section}{0pt}{0.6\baselineskip plus 0.05\baselineskip minus 0.05\baselineskip}{0.2\baselineskip}
+
+\titleformat{\subsection}
+  {\footnotesize\itshape\color{meta}}
+  {}{0em}{}
+\titlespacing*{\subsection}{0pt}{0.3\baselineskip}{0pt}
+
+% --- Lists ---------------------------------------------------------------
+% Refined dot bullet (period-centered) — lighter than \textbullet,
+% sits closer to baseline of serif body
+\setlist[itemize]{itemsep=0.5pt, topsep=1pt, parsep=0pt,
+                  leftmargin=1.0em,
+                  label={\color{accent}\small\textperiodcentered}}
+
+% --- Macros --------------------------------------------------------------
+\newcommand{\me}{\textbf{Dennis Johan Loevlie}\xspace}
+\newcommand{\meshort}{\textbf{Dennis Loevlie}\xspace}
+
+% Em-dash with thin spaces for parenthetical breaks (not en-dash)
+\newcommand{\bdash}{\,\textemdash\,}
+
+% Date column: only place sans appears in body. Tabular lining numerals
+% so date columns align cleanly across rows.
+% Date column gets lining tabular figures (uniform width, cap-height) so
+% dates align column-perfectly across rows. Body still uses oldstyle.
+\newcommand{\datestamp}[1]{{\sansfam\footnotesize\color{meta}\figureversion{lf}#1}}
+
+% Role line: bold serif label on left, sans tabular date on right.
+% \filbreak treats each role+sub+bullets as atomic — page breaks may
+% only happen between roles, never inside one. Combined with \nopagebreak
+% after the role and sub lines so the heading never separates from its
+% first bullet.
+\newcommand{\role}[2]{%
+  \filbreak%
+  \par\vspace{1pt}%
+  \noindent\textbf{#1}\hfill\datestamp{#2}\par\nopagebreak}
+
+\newcommand{\sub}[1]{\noindent\textit{\footnotesize\color{meta} #1}\par\nopagebreak}
+
+\newcommand{\monolink}[2]{\href{#1}{\monofam\footnotesize #2}}
+
+% v5.3: Venue + acro use REAL small caps from EB Garamond.
+\newcommand{\venue}[1]{{\textls[60]{\textsc{\MakeLowercase{#1}}}}}
+\newcommand{\acro}[1]{\textls[60]{\textsc{\MakeLowercase{#1}}}}
+
+% Publications: hanging indent so author lists wrap under the title
+\newenvironment{publist}{%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{1.2em}%
+    \setlength{\itemindent}{-1.2em}%
+    \setlength{\itemsep}{2pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{1pt}%
+  }%
+}{\end{list}}
+
+\begin{document}
+\thispagestyle{cvfirst}
+
+%---------------------------------------------------------------------------
+% Header
+%---------------------------------------------------------------------------
+\begin{center}
+{\sansfam\fontsize{22pt}{26pt}\selectfont\bfseries\color{accent} Dennis Johan Loevlie}\\[2pt]
+{\sansfam\footnotesize\color{meta}%
++1\,724\,841\,8769 \,\textperiodcentered\,
+\href{mailto:dennis.loevlie@tufts.edu}{dennis.loevlie@tufts.edu} \,\textperiodcentered\,
+\href{https://www.dennisloevlie.com}{dennisloevlie.com} \,\textperiodcentered\,
+\href{https://scholar.google.com/citations?user=oGkEIYkAAAAJ}{Google Scholar} \,\textperiodcentered\,
+\href{https://github.com/loevlie}{github.com/loevlie}}
+\end{center}
+\vspace{-4pt}{\color{rule}\rule{\linewidth}{0.5pt}}
+
+%---------------------------------------------------------------------------
+% Education
+%---------------------------------------------------------------------------
+\section{Education}
+
+\role{Centrum Wiskunde \& Informatica \& University of Amsterdam}{Incoming, Aug 2026 \textendash{}}
+PhD in Computer Science, \textit{ELLIS PhD Program}. Advisors: Madelon Hulsebos (TRLab, CWI) and Jan-Willem van de Meent (AMLab, UvA). Focus: multimodal tabular foundation models.
+
+\role{Tufts University, Medford, MA}{Sep 2024 \textendash{} May 2026 (expected)}
+M.S.\ in Computer Science. GPA: 3.95\,/\,4.00. \href{https://www.loevliedl.com/static/Portfolio/PDF/SSR_TSRPT.pdf}{Transcript}.
+
+\role{Carnegie Mellon University, Pittsburgh, PA}{Sep 2019 \textendash{} Dec 2020}
+M.S.\ in Chemical Engineering. GPA: 3.91\,/\,4.00.
+
+\role{West Virginia University, Morgantown, WV}{Sep 2016 \textendash{} Aug 2019}
+B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
+
+%---------------------------------------------------------------------------
+% Publications
+%---------------------------------------------------------------------------
+\section{Publications}
+
+\subsection{Machine Learning}
+
+\begin{publist}
+\item Ethan Harvey, \me, Michael C.\ Hughes. \href{https://arxiv.org/abs/2510.25759}{\textit{Synthetic Data Reveals Generalization Gaps in Correlated Multiple Instance Learning}}. \venue{ML4H 2025} Symposium, Findings Track.
+\end{publist}
+
+\subsection{Chemistry \& Computational Science}
+
+\begin{publist}
+\item \me, Brenno Ferreira, Giannis Mpourmpakis. \href{https://doi.org/10.1021/acs.accounts.2c00646}{\textit{Demystifying the Chemical Ordering of Multimetallic Nanoparticles}}. \venue{Accounts of Chemical Research} 56(3):248\textendash{}257, 2023. \href{https://github.com/mpourmpakis/CANELa_NP}{[code]}
+
+\item Maya Salem, \me, Giannis Mpourmpakis. \href{https://doi.org/10.1021/acs.jpcc.3c05827}{\textit{Single Atom Alloys Segregation in the Presence of Ligands}}. \venue{Journal of Physical Chemistry C} 127(46):22790\textendash{}22798, 2023.
+
+\item Ruikang Ding, Ingrid M.\ Padilla Espinosa, \meshort, Soodabeh Azadehranjbar, Andrew J.\ Baker, Giannis Mpourmpakis, Ashlie Martini, Tevis D.\,B.~Jacobs. \href{https://pubs.rsc.org/en/content/articlelanding/2022/na/d2na00326k}{\textit{Size-Dependent Shape Distributions of Platinum Nanoparticles}}. \venue{Nanoscale Advances} 4:3978\textendash{}3986, 2022.
+
+\item Anantha Venkataraman Nagarajan, \me, Michael J.\ Cowan, Giannis Mpourmpakis. \href{https://www.sciencedirect.com/science/article/abs/pii/S2211339821001167}{\textit{Resolving Electrocatalytic Imprecision in Atomically Precise Metal Nanoclusters}}. \venue{Current Opinion in Chemical Engineering} 36:100784, 2022.
+\end{publist}
+
+%---------------------------------------------------------------------------
+% Research Experience
+%---------------------------------------------------------------------------
+\section{Research Experience}
+
+\role{Tufts University \bdash{} Hughes Lab}{Aug 2024 \textendash{} Present}
+\sub{Graduate Researcher with Prof.\ Michael Hughes}
+\begin{itemize}
+  \item Co-led the \acro{ML4H} 2025 study showing a \emph{generalization gap} between correlated and non-correlated multiple instance learning (\acro{MIL}) architectures, using a synthetic benchmark with a Bayes-optimal upper bound.
+  \item Identified and resolved a quadratic-scaling bottleneck in the lab's \acro{MIL} codebase, enabling experiments on substantially larger 3D image datasets.
+  \item Designed attention- and transformer-based \acro{MIL} pipelines on 3D \acro{MRI}/\acro{CT} for early indicators of dementia and stroke; trained on Tufts \acro{HPC} with multi-\acro{GPU} distributed setups.
+  \item Developing a regularization method to encourage interpretable attention scores, and methods for supervised learning under noisy labels.
+\end{itemize}
+
+\role{Tufts University \bdash{} Sinapov Lab}{Jan 2025 \textendash{} Present}
+\sub{Graduate Researcher with Prof.\ Jivko Sinapov}
+\begin{itemize}
+  \item Trained Qwen2.5-Coder-7B with Group Relative Policy Optimization (\acro{GRPO}) and a custom 3-part reward (structure, aesthetics, semantic alignment) to generate \acro{SVG}s from text; achieved an \textbf{18\% improvement} on a benchmark covering aesthetics, alignment, and code validity.
+  \item Investigating why vision-language models (Qwen3-\acro{VL}) and open-vocabulary segmentation models (\acro{SAM}\,3) fail at object counting in dense scenes; designing tool-use and trajectory-based methods drawing on cognitive-science accounts of human counting.
+\end{itemize}
+
+\role{University of Pittsburgh \bdash{} CANELa Lab}{Jun 2021 \textendash{} Jan 2023}
+\sub{Graduate Researcher with Prof.\ Giannis Mpourmpakis}
+\begin{itemize}
+  \item Proposed a weight-initialization method that delivered a \textbf{71\% \acro{RMSE} reduction} for predicting nanoparticle stability across compositions and atomic orderings (\emph{Loevlie et al., Acc.\ Chem.\ Res.\ 2023}).
+  \item Designed and tuned \acro{ML} architectures for material-property prediction; co-author on \emph{Salem et al., JPCC 2023}.
+  \item Wrote the \acro{ML} methods and background section for the \emph{Nagarajan et al.}\ review (Curr.\ Opin.\ Chem.\ Eng., 2022).
+\end{itemize}
+
+\role{Carnegie Mellon University \bdash{} Kitchin Group}{Dec 2019 \textendash{} Dec 2020}
+\sub{Graduate Researcher with Prof.\ John Kitchin}
+\begin{itemize}
+  \item Trained a \acro{CNN} classifier to extract experimental information from microscopy images; rebuilt Mathematica analysis tooling as fast, interactive Python.
+  \item Released \href{https://tinyurl.com/yzpperdc}{\monofam nb\_search}, an open-source Python package for searching and indexing across Jupyter notebooks.
+\end{itemize}
+
+%---------------------------------------------------------------------------
+% Awards
+%---------------------------------------------------------------------------
+\section{Awards \& Honors}
+
+\begin{list}{}{%
+  \setlength{\leftmargin}{3.4em}%
+  \setlength{\labelwidth}{2.6em}%
+  \setlength{\labelsep}{0.5em}%
+  \setlength{\itemsep}{1pt}%
+  \setlength{\parsep}{0pt}%
+  \setlength{\topsep}{1pt}}
+\item[\datestamp{2026}] \textbf{1st place} (10 teams), \textit{BrainStorm Neural Decoder Challenge}\bdash{}real-time auditory decoding from 1024-channel \acro{ECoG}; 95\% accuracy, sub-ms inference, edge-deployable model.
+\item[\datestamp{2024}] \textbf{Community Grant}, \textit{Hugging Face}\bdash{}for \href{https://depth-anything.github.io/}{Depth Anything} demonstration work on video.
+\item[\datestamp{2019}] \textbf{1st place} (Advanced category), \textit{AVEVA National Simulation Competition}.
+\item[\datestamp{2018}] \textbf{2nd place}, \textit{AIChE National Poster Competition}, Computing \& Process Control Division.
+\end{list}
+
+%---------------------------------------------------------------------------
+% Industry Experience
+%---------------------------------------------------------------------------
+\section{Industry Experience}
+
+\role{Massachusetts General Hospital \& Harvard Medical School}{2025 \textendash{} Present}
+\sub{Machine Learning Researcher \bdash{} computational pathology}
+\begin{itemize}
+  \item Developing segmentation models for colon-cancer pathology slides; collaborating with clinical pathologists on dataset construction and downstream clinical evaluation.
+\end{itemize}
+
+\role{KEF Robotics, Pittsburgh, PA}{Jan 2023 \textendash{} Aug 2024}
+\sub{Senior Computer Vision \& \acro{ML} Engineer (2024) \,$\cdot$\, Computer Vision Engineer (2023)}
+\begin{itemize}
+  \item Sole \acro{ML} engineer on a one-year, \$500K project; led a team of five on on-device object detection, monocular depth prediction, and 3D map generation, demoed twice in person and selected for follow-on funding.
+  \item Fine-tuned Mask2Former for power-line segmentation across \acro{RGB} and \acro{IR} modalities using transfer learning and cross-modal label transfer; deployed on flight hardware.
+  \item Optimized segmentation network architecture for a \textbf{45\% inference-speed gain} at $<\!1\%$ accuracy cost.
+\end{itemize}
+
+\role{ContentsPal}{May 2025 \textendash{} Aug 2025}
+\sub{Multimodal \acro{AI} Intern (insurance-tech startup, \acro{MIT}-led)}
+\begin{itemize}
+  \item Implemented learning-based duplicate detection and open-vocabulary instance segmentation; integrated and tested in React/React Native.
+\end{itemize}
+
+\role{AiThElite}{Dec 2020 \textendash{} May 2021}
+\sub{Lead Data Scientist (collegiate-athletics AI startup)}
+\begin{itemize}
+  \item Built end-to-end data pipeline (Selenium scrapers \textrightarrow{} NumPy/Pandas feature engineering \textrightarrow{} scikit-learn models) and shipped a Django/AWS-hosted prediction product.
+\end{itemize}
+
+%---------------------------------------------------------------------------
+% Talks
+%---------------------------------------------------------------------------
+\section{Selected Talks}
+
+\begin{publist}
+\item \href{https://drive.google.com/file/d/1Z6lkTsqYSIzOqgM53qONW2riQhVM5R0W/view?usp=sharing}{\textit{Synthetic Data Reveals Generalization Gaps in Correlated Multiple Instance Learning}}. Poster, ML4H 2025 Symposium, San Diego, CA. \textit{Dec 2025.}
+
+\item \href{https://xchangepgh2023.sched.com/event/1LdC7/an-interactive-exploration-of-computer-vision-for-unmanned-aerial-vehicles-uavs}{\textit{Computer Vision for Unmanned Aerial Vehicles}}. Invited talk, XChangeIdeas Pittsburgh. \textit{2023.}
+\end{publist}
+
+%---------------------------------------------------------------------------
+% Service & Outreach
+%---------------------------------------------------------------------------
+\section{Service \& Outreach}
+
+Industry volunteer, youth robotics team building accessibility tools for blind soccer players \hfill \datestamp{2024}
+
+%---------------------------------------------------------------------------
+% Skills
+%---------------------------------------------------------------------------
+\section{Technical Skills}
+
+\noindent\textbf{Languages} \quad Python $\cdot$ C++ $\cdot$ JavaScript $\cdot$ MATLAB \\
+\textbf{ML / AI} \quad PyTorch $\cdot$ Hugging Face $\cdot$ TRL / GRPO $\cdot$ vLLM $\cdot$ multimodal learning $\cdot$ RL post-training $\cdot$ multiple instance learning $\cdot$ computer vision \\
+\textbf{Infrastructure} \quad SLURM / HPC $\cdot$ multi-GPU distributed training $\cdot$ CUDA $\cdot$ TensorRT $\cdot$ Docker $\cdot$ AWS
+
+\end{document}

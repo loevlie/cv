@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/jonasbb/pre-commit-latex-hooks
+    rev: v1.4.3
+    hooks:
+      - id: american-eg-ie       # i.e./e.g. -> i.e./e.g. with comma
+      - id: cleveref-capitalization
+      - id: ensure-labels-for-sections
+      - id: no-space-in-cite
+      - id: tilde-cite           # catches Smith~\cite{...} errors
+      - id: unique-labels
+
+  - repo: local
+    hooks:
+      - id: chktex
+        name: chktex
+        entry: chktex -q -n1 -n8 -n36
+        language: system
+        files: \.tex$
+        pass_filenames: true
+
+# Install: pip install pre-commit && pre-commit install
+# Run on all files: pre-commit run --all-files

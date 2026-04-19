@@ -1,0 +1,212 @@
+%---------------------------------------------------------------------------
+% Dennis Johan Loevlie -- Industry CV (v2 one-page)
+% Two-column sidebar layout, aggressively compressed to 1 page.
+%---------------------------------------------------------------------------
+\documentclass[9pt,letterpaper]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.4in,top=0.4in,bottom=0.4in]{geometry}
+
+% Typography: IBM Plex (Mike Abbink / Bold Monday, hinted for screen)
+\usepackage[sfdefault]{plex-sans}
+\usepackage{plex-mono}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[protrusion=true,expansion=true,tracking=true,kerning=true,final]{microtype}
+
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xspace}
+\usepackage[hidelinks]{hyperref}
+\usepackage{paracol}
+
+\linespread{1.02}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt plus 0.5pt minus 0.5pt}
+
+\definecolor{accent}{HTML}{0A2540}
+\definecolor{accentlight}{HTML}{2563A8}
+\definecolor{body}{HTML}{1A1A1A}
+\definecolor{meta}{HTML}{6B6B6B}
+\definecolor{rule}{HTML}{C8C8C8}
+\color{body}
+
+\hypersetup{
+  colorlinks=true, urlcolor=accentlight, linkcolor=accentlight, citecolor=accentlight,
+  pdftitle={Dennis Johan Loevlie -- CV}, pdfauthor={Dennis Johan Loevlie}
+}
+
+\pagestyle{empty}
+
+% Hierarchy: section header > role title > subsection > body
+% Section headers are the largest in-section element by design.
+\newcommand{\sidesection}[1]{%
+  \vspace{6pt}{\color{accent}\normalsize\bfseries #1}\par
+  \vspace{1pt}{\color{rule}\rule{\linewidth}{0.4pt}}\par\vspace{3pt}}
+
+\titleformat{\section}
+  {\normalsize\bfseries\color{accent}}
+  {}{0em}{}[\vspace{1pt}{\color{rule}\titlerule[0.4pt]}]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+
+\titleformat{\subsection}
+  {\footnotesize\itshape\color{meta}}
+  {}{0em}{}
+\titlespacing*{\subsection}{0pt}{3pt}{0pt}
+
+\setlist[itemize]{itemsep=1pt, topsep=1pt, parsep=0pt, leftmargin=0.95em, label={\color{accent}\footnotesize$\bullet$}}
+
+\newcommand{\me}{\textbf{Dennis Johan Loevlie}\xspace}
+\newcommand{\meshort}{\textbf{Dennis Loevlie}\xspace}
+\newcommand{\role}[2]{\noindent\textbf{\small #1}\hfill{\color{meta}\footnotesize #2}\par}
+\newcommand{\sub}[1]{\noindent\textit{\footnotesize\color{meta} #1}\par}
+\newcommand{\monolink}[2]{\href{#1}{\texttt{\footnotesize #2}}}
+% Sideitem: title smaller than section header so hierarchy reads correctly
+\newcommand{\sideitem}[3]{%
+  \noindent\raggedright\textbf{\footnotesize #1}\par
+  {\scriptsize\color{meta}\raggedright #2\par}
+  {\scriptsize\color{meta}\raggedright #3\par}\vspace{4pt}}
+
+\begin{document}
+
+%---------------------------------------------------------------------------
+% Header
+%---------------------------------------------------------------------------
+\noindent\begin{minipage}{\linewidth}
+{\fontsize{22pt}{26pt}\selectfont\bfseries Dennis Johan Loevlie}\\[2pt]
+{\footnotesize\color{meta}ML Researcher \,\textperiodcentered\, Multimodal tabular foundation models \,\textperiodcentered\, Incoming ELLIS PhD, Centrum Wiskunde \& Informatica (TRLLab) \& University of Amsterdam (AMLab)}
+\end{minipage}\\[2pt]
+{\color{rule}\rule{\linewidth}{0.5pt}}
+
+\vspace{1pt}
+
+\columnratio{0.28}
+\setlength{\columnsep}{18pt}
+\setlength{\columnseprule}{0.4pt}
+\colseprulecolor{rule}
+\begin{paracol}{2}
+
+%---------------------------------------------------------------------------
+% SIDEBAR
+%---------------------------------------------------------------------------
+\sidesection{Contact}
+{\footnotesize\raggedright%
+\monolink{mailto:dennis.loevlie@tufts.edu}{dennis.loevlie@tufts.edu}\par%
+\monolink{https://www.dennisloevlie.com}{dennisloevlie.com}\par%
+\monolink{https://www.dennisloevlie.com/blog/}{dennisloevlie.com/blog}\par%
+\monolink{https://github.com/loevlie}{github.com/loevlie}\par%
+\href{https://scholar.google.com/citations?user=oGkEIYkAAAAJ}{Google Scholar}\par%
+\href{https://www.linkedin.com/in/dennisloevlie/}{LinkedIn}\par%
+}
+
+\sidesection{Skills}
+{\footnotesize\raggedright
+\textbf{Languages}\par
+Python $\cdot$ C++ $\cdot$ JavaScript\par
+
+\vspace{4pt}
+\textbf{ML / AI}\par
+PyTorch $\cdot$ Hugging Face $\cdot$ TRL / GRPO $\cdot$ vLLM $\cdot$ multimodal learning $\cdot$ RL post-training $\cdot$ computer vision $\cdot$ multiple instance learning\par
+
+\vspace{4pt}
+\textbf{Infrastructure}\par
+SLURM / HPC $\cdot$ multi-GPU $\cdot$ CUDA $\cdot$ TensorRT $\cdot$ Docker $\cdot$ AWS\par}
+
+\sidesection{Education}
+\sideitem{ELLIS PhD, CS}{Centrum Wiskunde \& Informatica (TRLLab) \& University of Amsterdam (AMLab)}{Incoming Aug 2026}
+\sideitem{M.S.\ Computer Science}{Tufts University}{2024 -- 2026 \,\textperiodcentered\, GPA 3.95}
+\sideitem{M.S.\ Chemical Engineering}{Carnegie Mellon University}{2019 -- 2020 \,\textperiodcentered\, GPA 3.91}
+\sideitem{B.S.\ Chemical Engineering}{West Virginia University}{2016 -- 2019 \,\textperiodcentered\, \textit{cum laude}}
+
+\sidesection{Selected Awards}
+{\footnotesize\raggedright
+\textbf{2026} \, 1st place, \href{https://qsimeon.github.io/brainstorm_bci_blog.html}{BrainStorm Neural Decoder Challenge}\par\vspace{1pt}
+\textbf{2024} \, \href{https://huggingface.co/spaces/JohanDL/Depth-Anything-Video}{Hugging Face Community Grant}\par\vspace{1pt}
+\textbf{2019} \, 1st (Adv.), AVEVA National Simulation Competition\par\vspace{1pt}
+\textbf{2018} \, 2nd, AIChE National Poster Competition\par}
+
+\sidesection{Talks}
+{\footnotesize\raggedright
+\href{https://arxiv.org/abs/2510.25759}{\textit{Synthetic Data Reveals Generalization Gaps in Correlated MIL.}}\par
+{\color{meta}Poster, ML4H 2025, San Diego}\par\vspace{3pt}
+
+\href{https://xchangepgh2023.sched.com/event/1LdC7/an-interactive-exploration-of-computer-vision-for-unmanned-aerial-vehicles-uavs}{\textit{Computer Vision for UAVs.}}\par
+{\color{meta}Invited talk, XChangeIdeas Pittsburgh, 2023\par}}
+
+\sidesection{Open Source}
+{\footnotesize\raggedright
+Contributor, \href{https://github.com/Franblueee/torchmil}{torchmil}\par\vspace{1pt}
+Contributor, \href{https://github.com/huggingface/transformers}{Hugging Face Transformers}\par}
+
+\switchcolumn
+
+%---------------------------------------------------------------------------
+% MAIN
+%---------------------------------------------------------------------------
+
+\section{Industry Experience}
+
+\role{Massachusetts General Hospital \& Harvard Medical School}{2025\,--\,Present}
+\sub{Machine Learning Researcher, computational pathology}
+\begin{itemize}
+  \item Building segmentation models for colon-cancer pathology slides with clinical pathologists; dataset construction and clinical evaluation.
+\end{itemize}
+
+\role{KEF Robotics, Pittsburgh, PA}{Jan 2023\,--\,Aug 2024}
+\sub{Senior Computer Vision \& ML Engineer (2024) \,$\cdot$\, CV Engineer (2023)}
+\begin{itemize}
+  \item Sole ML engineer on a one-year, \$500K project; led a team of five on on-device object detection, monocular depth, and 3D map generation; two in-person demos and selected for follow-on funding.
+  \item Fine-tuned Mask2Former for power-line segmentation across RGB and IR via transfer learning and cross-modal label transfer; deployed on flight hardware; \textbf{45\% inference-speed gain} at $<\!1\%$ accuracy cost.
+\end{itemize}
+
+\role{ContentsPal}{May\,--\,Aug 2025}
+\sub{Multimodal AI Intern, MIT-led insurance-tech startup}
+\begin{itemize}
+  \item Implemented learning-based duplicate detection and open-vocabulary instance segmentation.
+\end{itemize}
+
+\section{Research Experience}
+
+\role{Tufts University \,\textemdash\, Hughes Lab}{Aug 2024\,--\,Present}
+\sub{Multiple instance learning for medical imaging}
+\begin{itemize}
+  \item Co-led \href{https://arxiv.org/abs/2510.25759}{ML4H 2025 paper} on a \emph{generalization gap} between correlated and non-correlated MIL architectures via a Bayes-optimal synthetic benchmark.
+  \item Resolved a quadratic-scaling bottleneck in the lab's MIL codebase, enabling substantially larger 3D image datasets; attention/transformer MIL pipelines on 3D MRI/CT for dementia and stroke indicators (Tufts HPC, multi-GPU).
+\end{itemize}
+
+\role{Tufts University \,\textemdash\, Sinapov Lab}{Jan 2025\,--\,Present}
+\sub{LLM RL post-training for visual reasoning}
+\begin{itemize}
+  \item Trained Qwen2.5-Coder-7B with GRPO and a 3-part reward for text-to-SVG generation; \textbf{18\% reward improvement} (\href{https://www.loevliedl.com/static/Portfolio/PDF/RL_for_Visual_Reasoning.pdf}{writeup}). Investigating tool-use methods for object counting in VLMs (Qwen3-VL) and open-vocabulary segmentation (SAM3).
+\end{itemize}
+
+\role{University of Pittsburgh \,\textemdash\, CANELa Lab}{Jun 2021\,--\,Jan 2023}
+\sub{ML for materials science}
+\begin{itemize}
+  \item Weight-initialization method delivering \textbf{71\% RMSE reduction} on nanoparticle stability prediction (\href{https://doi.org/10.1021/acs.accounts.2c00646}{\emph{Acc.\ Chem.\ Res.\ 2023}}).
+\end{itemize}
+
+\section{Selected Projects}
+
+\role{NeurOpt \,\textemdash\, LLM-guided NAS \& hyperparameter search}{2025}
+\sub{Open source \,$\cdot$\, \monolink{https://github.com/loevlie/neuropt}{github.com/loevlie/neuropt}}
+\begin{itemize}
+  \item Library that uses Claude (Haiku/Sonnet/Opus) to read training curves and propose the next experiment; crash-safe, resumable runs.
+  \item On CNN NAS (14 params) at 15 evals: \textbf{0.39 val loss vs Optuna TPE 0.46 vs random search 0.61}.
+\end{itemize}
+
+\role{Brain Hemorrhage Detection via DDPM Reconstruction}{2024}
+\sub{Course project, Generative Models (Tufts) \,$\cdot$\, \href{https://docs.google.com/presentation/d/18M_IzT69jhEV7JDR7PFZ8u-ZaR1Mo_TeJpLFEIavl0U/edit?usp=sharing}{poster}}
+\begin{itemize}
+  \item Trained a UNet DDPM (1000 steps, linear $\beta$) on healthy CT slices only; flagged hemorrhage via reconstruction error of partially-noised unhealthy slices. Strong image-level detection, weaker pixel-level localization; pretrained backbones hurt anomaly detection despite lower val reconstruction loss.
+\end{itemize}
+
+\section{Publications}
+
+\noindent {\footnotesize E.~Harvey, \me, M.~C.~Hughes. \href{https://arxiv.org/abs/2510.25759}{\textit{Synthetic Data Reveals Generalization Gaps in Correlated Multiple Instance Learning.}} \textbf{ML4H 2025} (Findings).}\par
+\noindent {\footnotesize\color{meta}Plus 4 co-authored papers in chemistry / materials science (first-author in \href{https://doi.org/10.1021/acs.accounts.2c00646}{\emph{Acc.\ Chem.\ Res.\ 2023}}; also \href{https://doi.org/10.1021/acs.jpcc.3c05827}{\emph{JPCC 2023}}, \href{https://pubs.rsc.org/en/content/articlelanding/2022/na/d2na00326k}{\emph{Nanoscale Adv.\ 2022}}, \href{https://www.sciencedirect.com/science/article/abs/pii/S2211339821001167}{\emph{Curr.\ Opin.\ Chem.\ Eng.\ 2022}}).}
+
+\end{paracol}
+
+\end{document}

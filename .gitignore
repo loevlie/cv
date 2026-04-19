@@ -1,0 +1,33 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.bpx
+
+# Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Built PDFs at the top level get rebuilt; dist/ is the published artifact path
+main.pdf
+industry.tex.pdf
+variants/*.pdf
+
+# Backup
+*~
+*.swp

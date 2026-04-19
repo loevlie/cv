@@ -1,0 +1,47 @@
+name: Build CV
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build canonical CV (main.tex → loevlie-cv-latest.pdf)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: false
+          # latexmk handles the rerun-detection for lastpage refs
+          extra_system_packages: ""
+
+      - name: Stage dist/
+        run: |
+          mkdir -p dist
+          cp main.pdf dist/loevlie-cv-latest.pdf
+          DATE=$(date +%Y-%m-%d)
+          cp main.pdf "dist/loevlie-cv-$DATE.pdf"
+          ls -la dist/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdfs
+          path: dist/*.pdf
+          retention-days: 90
+
+      - name: Deploy to GitHub Pages (main branch only)
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          keep_files: true
+          # Result: https://loevlie.github.io/<repo>/loevlie-cv-latest.pdf
