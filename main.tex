@@ -101,7 +101,7 @@
 % vs full lists. Build pipeline: pdflatex → biber → pdflatex × 2.
 \usepackage[
   backend   = biber,
-  style     = publist,
+  style     = numeric,
   sorting   = ydnt,
   maxnames  = 99,
   minnames  = 1,
@@ -113,12 +113,30 @@
 ]{biblatex}
 \addbibresource{publications.bib}
 
-% Bold the highlighted-name parts (matches \me convention from before).
+% Bold the highlighted-name parts (per author+an = {N=highlight} in .bib).
 % Per Bringhurst rule 3.2.1 we don't double-emphasize — bold only.
 \renewcommand*{\mkbibnamefamily}[1]{%
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
+\renewcommand*{\mkbibnameprefix}[1]{%
+  \ifitemannotation{highlight}{\textbf{#1}}{#1}}
+
+% Hide the [1] [2] numeric labels — for a CV-style bibliography we just
+% want hanging-indent entries with no labels.
+\defbibheading{none}{}
+\renewcommand{\bibsetup}{}
+\setlength{\bibitemsep}{2pt plus 0.5pt minus 0.3pt}
+\setlength{\bibhang}{1.2em}
+\DeclareFieldFormat{labelnumberwidth}{}
+\setlength{\biblabelsep}{0pt}
+\defbibenvironment{bibliography}
+  {\list{}{\setlength{\leftmargin}{\bibhang}%
+           \setlength{\itemindent}{-\bibhang}%
+           \setlength{\itemsep}{\bibitemsep}%
+           \setlength{\parsep}{0pt}}}
+  {\endlist}
+  {\item}
 
 % Drop the publist default "Talks" header noise; we only print bibliography.
 \AtEveryBibitem{\clearfield{abstract}\clearfield{file}}
