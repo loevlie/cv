@@ -117,8 +117,26 @@ def main():
     with args.bib.open() as f:
         bib = bibtexparser.load(f)
 
+    # Manual Google Scholar overrides — if a bib entry has a `scholar = {N}`
+    # field, it takes precedence over the API-fetched count. Scholar usually
+    # reports higher counts than Semantic Scholar (~30-50% for CS papers)
+    # and there's no public Scholar API, so manual override is the cleanest
+    # way to surface the numbers a user actually sees on their profile.
+    for e in bib.entries:
+        if "scholar" in e:
+            try:
+                cache[e["ID"]] = {
+                    "paper_id": "scholar-manual",
+                    "count": int(e["scholar"]),
+                    "fetched": now.isoformat(timespec="seconds"),
+                }
+            except ValueError:
+                print(f"  warn: bad scholar={e['scholar']!r} on {e['ID']}", file=sys.stderr)
+
     needs_refresh = {}
     for e in bib.entries:
+        if "scholar" in e:
+            continue                 # manual override wins; skip API lookup
         pid = normalize_id(e)
         if not pid:
             continue
@@ -131,7 +149,9 @@ def main():
         if stale:
             needs_refresh[e["ID"]] = pid
 
-    print(f"{len(needs_refresh)} of {len(bib.entries)} entries need refresh", file=sys.stderr)
+    print(f"{len(needs_refresh)} of {len(bib.entries)} entries need API refresh "
+          f"(plus {sum(1 for e in bib.entries if 'scholar' in e)} Scholar overrides)",
+          file=sys.stderr)
 
     s2_results = {}
     pids = list(needs_refresh.values())

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd plist for weekly Scholar+S2 citation refresh.
+
+  Install:
+    cp scripts/com.loevlie.cv-refresh.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.loevlie.cv-refresh.plist
+
+  Verify:
+    launchctl list | grep cv-refresh
+    cat ~/Library/Logs/cv-refresh.log
+
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.loevlie.cv-refresh.plist
+    rm ~/Library/LaunchAgents/com.loevlie.cv-refresh.plist
+
+  Trigger now (test):
+    launchctl start com.loevlie.cv-refresh
+
+  Notes:
+    - Runs every Monday at 09:17 local time.
+    - If your laptop was asleep at the trigger time, launchd runs the job
+      next time the system wakes (RunAtLoad-equivalent for missed Calendar
+      intervals).
+    - Logs to ~/Library/Logs/cv-refresh.log (rotated by macOS).
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.loevlie.cv-refresh</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/dennisloevlie/CSSOP_Prep/cv/scripts/refresh-and-commit.sh</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>9</integer>
+    <key>Minute</key>
+    <integer>17</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/dennisloevlie/Library/Logs/cv-refresh.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/dennisloevlie/Library/Logs/cv-refresh.log</string>
+
+  <!-- Run on load too, so we know it's wired up correctly -->
+  <key>RunAtLoad</key>
+  <false/>
+
+  <!-- Don't relaunch if it exits (one-shot per schedule) -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <!-- Re-fire if we missed the schedule (e.g. laptop asleep) -->
+  <key>StartOnMount</key>
+  <false/>
+
+  <!-- ssh-agent / git credentials live in the user keychain;
+       we need the full Aqua-session env -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>
