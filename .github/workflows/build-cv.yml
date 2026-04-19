@@ -7,6 +7,13 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# GITHUB_TOKEN needs `contents: write` to push to the gh-pages branch.
+# Read-only is the 2024+ default; this opt-in fixes the 403 error.
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
