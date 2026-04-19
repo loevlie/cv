@@ -115,15 +115,21 @@
 
 % Bold the highlighted-name parts (per author+an = {N=highlight} in .bib).
 % Per Bringhurst rule 3.2.1 we don't double-emphasize — bold only.
-% Equal-contribution authors get a trailing \textsuperscript{*} via the
-% `equalcontrib` annotation; pair with note = {* Equal contribution.}.
+% Equal-contribution authors take one of two annotations:
+%   1=equal           → name + \textsuperscript{*}, no bold
+%   2=highlightequal  → \textbf{name} + \textsuperscript{*}
+% (biblatex's +an field is one-annotation-per-position; we combine them
+%  into a single value rather than stacking comma-separated annotations.)
 \renewcommand*{\mkbibnamefamily}[1]{%
-  \ifitemannotation{highlight}{\textbf{#1}}{#1}%
-  \ifitemannotation{equalcontrib}{\textsuperscript{*}}{}}
+  \ifitemannotation{highlight}{\textbf{#1}}{%
+    \ifitemannotation{highlightequal}{\textbf{#1}\textsuperscript{*}}{%
+      \ifitemannotation{equal}{#1\textsuperscript{*}}{#1}}}}
 \renewcommand*{\mkbibnamegiven}[1]{%
-  \ifitemannotation{highlight}{\textbf{#1}}{#1}}
+  \ifitemannotation{highlight}{\textbf{#1}}{%
+    \ifitemannotation{highlightequal}{\textbf{#1}}{#1}}}
 \renewcommand*{\mkbibnameprefix}[1]{%
-  \ifitemannotation{highlight}{\textbf{#1}}{#1}}
+  \ifitemannotation{highlight}{\textbf{#1}}{%
+    \ifitemannotation{highlightequal}{\textbf{#1}}{#1}}}
 
 % Optional citation metrics — populated by scripts/fetch_citations.py
 % (Semantic Scholar with OpenAlex fallback). If metrics.tex is missing
