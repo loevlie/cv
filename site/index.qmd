@@ -1,0 +1,50 @@
+---
+title: "Dennis Johan Loevlie"
+subtitle: "ELLIS PhD candidate — multimodal foundation models for tabular data"
+description: "ML researcher at the intersection of multimodal foundation models, tabular data, and probabilistic deep learning. Heading to CWI (TRLLab) and UvA (AMLab) via the ELLIS PhD program."
+about:
+  template: trestles
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/loevlie
+    - text: "Google Scholar"
+      href: https://scholar.google.com/citations?user=oGkEIYkAAAAJ
+    - icon: file-pdf
+      text: CV
+      href: https://loevlie.github.io/cv/loevlie-cv-latest.pdf
+    - icon: envelope
+      text: Email
+      href: mailto:dennis.loevlie@tufts.edu
+date: today
+date-modified: last-modified
+---
+
+## About
+
+I am a researcher working on **multimodal foundation models for tabular data** —
+how to learn cross-schema representations that combine numerics, text, and
+images in the same model. I am incoming to the [ELLIS PhD program](https://ellis.eu/),
+co-supervised by [Madelon Hulsebos](https://madelonhulsebos.github.io/) at CWI
+and [Jan-Willem van de Meent](https://jwvdm.github.io/) at AMLab.
+
+Before the PhD I shipped production ML at [KEF Robotics](https://kefrobotics.com)
+(power-line segmentation on flight hardware), [MGH/Harvard](https://www.massgeneral.org/)
+(computational pathology), and [ContentsPal](https://contentspal.com)
+(multimodal duplicate detection). I co-led the [ML4H 2025 paper](https://arxiv.org/abs/2510.25759)
+on generalization gaps in correlated multiple-instance learning with the Hughes
+Lab at Tufts.
+
+## Research interests
+
+- **Multimodal tabular foundation models** — pretraining across heterogeneous schemas
+- **Probabilistic deep learning** — uncertainty over structured predictions
+- **Open science** — every paper has a code link, every model is releasable
+
+## Recent
+
+- **Apr 2026** — Site live; [CV PDF](https://loevlie.github.io/cv/loevlie-cv-latest.pdf) updated
+- **Feb 2026** — 1st place, [BrainStorm Neural Decoder Challenge](https://qsimeon.github.io/brainstorm_bci_blog.html)
+- **Dec 2025** — Poster at [ML4H 2025](https://ml4health.github.io/2025/), San Diego
+
+See [Papers](papers/index.qmd) for project pages and [Research](research.qmd) for the longer statement.

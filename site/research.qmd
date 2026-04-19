@@ -1,0 +1,71 @@
+---
+title: "Research"
+description: "Research statement: multimodal foundation models for tabular data"
+date-modified: last-modified
+---
+
+## Statement
+
+The bottleneck of tabular machine learning is not the model — it is the
+*schema*. Foundation models for text, images, audio, and video have all
+benefited from the assumption that the input space is universal: a token is
+a token, a pixel is a pixel. Tables break this assumption. Each table has
+its own column names, its own units, its own ontology, and increasingly its
+own multimodal cells (images of products, free-text reviews, geocoded
+locations, embedded JSON).
+
+My research is on **multimodal tabular foundation models that pretrain
+across heterogeneous schemas** and condition downstream prediction on
+column-aware representations. Three threads:
+
+### 1. Cross-schema pretraining
+
+How do we pretrain on millions of tables when no two share the same
+columns? Recent work — TabPFN, TabuLa-8B, CARTE, GTL — has shown that
+column-aware tokenization and masked-cell objectives can transfer
+across schemas. The open question is *how far this scales* and where
+the inductive biases break.
+
+### 2. Multimodal columns
+
+A column can be a number, a category, a free-text comment, an image, or a
+nested record. Most tabular pretraining ignores everything beyond the first
+two. I am working on encoders that treat each column type with its own
+modality-appropriate embedder while sharing a fused decoder for downstream
+prediction.
+
+### 3. Probabilistic structure for tabular FM
+
+Tabular tasks are often risk-sensitive (medicine, finance, materials). The
+probabilistic-DL community (where my co-supervisor van de Meent built
+[ProbTorch](https://github.com/probtorch/probtorch)) has tools — amortized
+inference, latent-variable factorizations, Bayesian post-training — that
+have not yet landed in tabular FMs. I want to bring them.
+
+## Path
+
+I co-led the [ML4H 2025 paper](https://arxiv.org/abs/2510.25759) on a
+*generalization gap* between correlated and non-correlated multiple-instance
+learning architectures, using a Bayes-optimal synthetic benchmark with the
+Hughes Lab at Tufts. Earlier work in materials science (with the CANELa Lab
+at Pittsburgh) gave me the engineering chops to actually train models at
+non-trivial scale: a weight-initialization method delivering 71% RMSE
+reduction on nanoparticle stability prediction
+[(Acc. Chem. Res. 2023)](https://doi.org/10.1021/acs.accounts.2c00646).
+
+Production ML at KEF Robotics, MGH/Harvard, and ContentsPal taught me
+something different: that the most important property of a research model is
+whether it survives contact with real data and real users. I will keep this
+discipline through the PhD.
+
+## What I am looking for
+
+Collaboration on:
+
+- Tabular pretraining benchmarks beyond TabPFN-bench
+- Column-type extension: image cells, free text, structured nested records
+- Bayesian post-training of tabular FMs
+- Open releases of trained checkpoints, evaluation harnesses, and reproducible code
+
+If any of this overlaps with what you are building, please reach out at
+[dennis.loevlie@tufts.edu](mailto:dennis.loevlie@tufts.edu).

@@ -1,0 +1,99 @@
+%---------------------------------------------------------------------------
+% Beamer fallback — Metropolis theme + IBM Plex Sans/Mono
+% Use this when a venue requires .tex source for slides.
+% Touying (talk.typ) is the primary; this is the safety net.
+%---------------------------------------------------------------------------
+\documentclass[aspectratio=169]{beamer}
+\usetheme{metropolis}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[scale=0.95]{plex-sans}
+\usepackage[scale=0.88]{plex-mono}
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+
+% --- Brand (matches cv/main.tex) ------------------------------------------
+\definecolor{navy}{HTML}{0A2540}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{meta}{HTML}{6B6B6B}
+
+\setbeamercolor{normal text}{fg=ink}
+\setbeamercolor{frametitle}{fg=navy}
+\setbeamercolor{progress bar}{fg=navy}
+\setbeamercolor{title separator}{fg=navy}
+\setbeamercolor{progress bar in section page}{fg=navy}
+\setbeamercolor{alerted text}{fg=navy}
+
+\setbeamerfont{frametitle}{family=\sffamily, series=\bfseries, size=\Large}
+\setbeamerfont{title}{family=\sffamily, series=\bfseries}
+
+\title{Multimodal Tabular Foundation Models}
+\subtitle{Pretraining strategies for heterogeneous schemas}
+\author{Dennis Johan Loevlie}
+\institute{ELLIS PhD \,\textemdash\, CWI \& UvA}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{One idea per slide}
+Tabular FMs treat \emph{every column} as a token.
+
+\bigskip
+
+The hard part is not the model. It is the \emph{schema}.
+\end{frame}
+
+\begin{frame}{Why now?}
+\begin{itemize}
+  \item Cross-table pretraining: TabPFN, TabuLa-8B, CARTE, GTL
+  \item Multimodal grounding: text/image columns alongside numerics
+  \item Open data: NeurIPS Table Representation Learning workshop
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Math}
+\[
+  p(y \mid x) = \sum_z p(y \mid z)\,p(z \mid x)
+\]
+
+\smallskip
+
+{\small\color{meta}Standard latent-variable factorization. Pretraining learns
+$p(z\mid x)$ across schemas; downstream fine-tuning conditions on
+schema-specific $p(y \mid z)$.}
+\end{frame}
+
+\begin{frame}[fragile]{Code, sparingly}
+\begin{verbatim}
+def encode(row, schema):
+    return [
+      tokenizer(col_name, value, schema[col_name])
+      for col_name, value in row.items()
+    ]
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Results}
+\begin{itemize}
+  \item TabPFN-bench: \alert{+6.1} avg accuracy
+  \item 14/14 downstream benchmarks improved
+  \item Zero per-task fine-tuning
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Where we go next}
+\begin{enumerate}
+  \item \emph{Larger schemas} — 1k+ columns
+  \item \emph{Image-column pretraining} at scale
+  \item \emph{Probabilistic head} — Bayesian uncertainty
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[standout]
+Thank you.\\[0.6em]
+{\small\color{meta}Slides + paper: \url{https://loevlie.github.io/cv}}
+\end{frame}
+
+\end{document}

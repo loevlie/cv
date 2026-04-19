@@ -1,0 +1,63 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - "papers/**/assets/**"
+    - "assets/**"
+
+website:
+  title: "Dennis Johan Loevlie"
+  description: "ELLIS PhD — multimodal foundation models for tabular data"
+  site-url: https://loevlie.github.io
+  repo-url: https://github.com/loevlie/cv
+  open-graph: true
+  twitter-card: true
+  navbar:
+    pinned: true
+    right:
+      - href: index.qmd
+        text: Home
+      - href: research.qmd
+        text: Research
+      - href: papers/index.qmd
+        text: Papers
+      - href: cv.qmd
+        text: CV
+      - icon: github
+        href: https://github.com/loevlie
+        aria-label: GitHub
+      - text: "Scholar"
+        href: https://scholar.google.com/citations?user=oGkEIYkAAAAJ
+        aria-label: Google Scholar
+  page-footer:
+    border: false
+    center: |
+      © 2026 Dennis Johan Loevlie · built with [Quarto](https://quarto.org)
+    right: |
+      Last updated {{< meta date-modified >}}
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme-light.scss]
+      dark:  [cosmo, theme-dark.scss]
+    css: styles.css
+    toc: true
+    toc-location: right
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
+    link-external-icon: false
+    anchor-sections: true
+    citations-hover: true
+    footnotes-hover: true
+    lightbox: auto
+    fontsize: 1.0625rem
+    grid:
+      body-width: 760px
+      sidebar-width: 240px
+      margin-width: 280px
+
+# One bibliography to rule them all — same source as the LaTeX CV
+bibliography: ../publications.bib
+csl: assets/acm-sig-proceedings.csl

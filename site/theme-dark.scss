@@ -1,0 +1,51 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+// Inverted brand palette
+$navy:        #6FA8FF;          // navy lifted for dark-bg legibility
+$navy-soft:   #4F88DD;
+$ink:         #E6E1D6;
+$paper:       #0E1419;
+$rule:        #1F2832;
+$accent:      $navy;
+$accent-hover:#9DC3FF;
+
+$primary:                 $accent;
+$body-bg:                 $paper;
+$body-color:              $ink;
+$link-color:              $accent;
+$link-hover-color:        $accent-hover;
+$border-color:            $rule;
+
+$font-family-serif:       "IBM Plex Serif", Georgia, serif;
+$font-family-sans-serif:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$font-family-monospace:   "IBM Plex Mono", "JetBrains Mono", Menlo, monospace;
+$font-family-base:        $font-family-serif;
+$headings-font-family:    $font-family-sans-serif;
+$headings-font-weight:    600;
+$headings-color:          $accent;
+
+$font-size-base:          1.0625rem;
+$line-height-base:        1.65;
+
+$code-color:              $accent-hover;
+$code-bg:                 #161D27;
+
+/*-- scss:rules --*/
+
+.quarto-title-block {
+  border-bottom: 1px solid $rule;
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  .quarto-title-meta { color: #9aa1ac; }
+}
+
+.paper-hero img { border: 1px solid $rule; }
+
+.paper-links a { border-color: $accent; color: $accent; }
+.paper-links a:hover { background: $accent; color: $paper; }
+
+.tldr { background: rgba(111, 168, 255, 0.06); }
+
+details.bibtex pre { background: $code-bg; }

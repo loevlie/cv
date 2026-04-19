@@ -1,0 +1,47 @@
+name: refresh-citations
+
+# Weekly cron — Mondays 06:17 UTC (off-the-hour to dodge runner contention).
+# Refreshes citation counts via Semantic Scholar (with OpenAlex fallback)
+# and commits the updated cache + metrics.tex if anything changed. The
+# build-cv workflow then rebuilds the CV with the new numbers.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install bibtexparser==1.4.3
+
+      - name: Fetch citations
+        env:
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+        run: |
+          mkdir -p .cache
+          python scripts/fetch_citations.py \
+            --bib publications.bib \
+            --cache .cache/citations.json \
+            --out metrics.tex \
+            --ttl-days 7
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "cv-bot"
+          git config user.email "cv-bot@users.noreply.github.com"
+          git add metrics.tex .cache/citations.json
+          git diff --cached --quiet || git commit -m "chore: refresh citation metrics"
+          git push

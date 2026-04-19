@@ -1,0 +1,86 @@
+%---------------------------------------------------------------------------
+% Sparkline experiment — Tufte-style word-sized graphic for citation/award
+% trajectories. Per the v3 UX research: "defensible if subtle, only with
+% striking trajectory." Treat this as a TASTE TEST, not a production move.
+%
+% Intentionally minimal: just shows what an inline sparkline looks like
+% next to one paper / one award. If you don't have the trajectory yet,
+% don't ship it.
+%---------------------------------------------------------------------------
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.55in,top=0.45in,bottom=0.5in]{geometry}
+
+\usepackage[scale=0.97]{plex-serif}
+\usepackage[scale=0.91]{plex-sans}
+\usepackage[scale=0.89]{plex-mono}
+\usepackage[protrusion=true,expansion=true,tracking=true,kerning=true,final]{microtype}
+\AtBeginDocument{\figureversion{osf}}
+
+\usepackage{xcolor}
+\definecolor{accent}{HTML}{0A2540}
+\definecolor{meta}{HTML}{6B6B6B}
+\color{black!90}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% --- The sparkline command -------------------------------------------------
+% Pass a comma-list of monthly citation counts. Renders ~10pt wide × 1ex tall
+% sparkline aligned to the surrounding baseline.
+\newcommand{\sparkline}[1]{%
+  \tikz[baseline=-0.5ex]{%
+    \begin{axis}[
+      width=2.6cm, height=0.9em,
+      hide axis, scale only axis,
+      xmin=0, ymin=0,
+      ticks=none, axis lines=none,
+      enlargelimits=false,
+      mark=none,
+    ]
+      \addplot[draw=accent, line width=0.5pt, smooth] coordinates {
+        \foreach \y [count=\x] in {#1} { (\x, \y) }
+      };
+    \end{axis}
+  }%
+}
+
+\begin{document}
+
+\section*{Sparkline taste test}
+
+Inline trajectory next to a single award:
+
+\smallskip
+
+\textbf{2026} \, 1st place, BrainStorm Neural Decoder Challenge
+\quad
+\textcolor{meta}{citations:} \sparkline{0,0,1,3,8,14,22,31,40,52,68,85}
+
+\bigskip
+
+Or next to one publication:
+
+\smallskip
+
+E.~Harvey, \textbf{D.~J.~Loevlie}, M.~C.~Hughes.
+\textit{Synthetic Data Reveals Generalization Gaps in Correlated MIL.}
+ML4H 2025. \quad \sparkline{0,0,0,1,2,5,11,18,27,38,52}
+
+\bigskip
+
+\textbf{Verdict (per v3 UX research):} Tufte-pure. Reads as restrained data
+viz, not gimmickry. \emph{But} only adopt if the trajectory is striking
+(monotonic + steep). Flat sparklines actively hurt; they say ``my work
+plateaued.''
+
+\bigskip
+
+\textbf{For our user, year-0 PhD:} probably wait. Citation counts are too
+low for the trajectories to mean anything yet. Revisit Year 2+.
+
+\end{document}

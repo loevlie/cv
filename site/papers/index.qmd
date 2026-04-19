@@ -1,0 +1,19 @@
+---
+title: "Papers"
+description: "Project pages — one page per paper. Pointer-rich index linked from the CV."
+listing:
+  contents: "*.qmd"
+  type: default
+  sort: "date desc"
+  categories: true
+  fields: [image, date, title, description, categories]
+  feed: true
+  filter-ui: true
+  sort-ui: [date, title]
+page-layout: full
+date-modified: last-modified
+---
+
+Click a paper for the project page (figures, abstract, code, BibTeX, video).
+The full list with full citations lives on the
+[CV PDF](https://loevlie.github.io/cv/loevlie-cv-latest.pdf).

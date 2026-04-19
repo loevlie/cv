@@ -1,0 +1,29 @@
+---
+title: "Curriculum Vitae"
+description: "Latest CV PDF, regenerated weekly with live citation counts."
+date-modified: last-modified
+---
+
+The current academic CV lives at:
+[loevlie.github.io/cv/loevlie-cv-latest.pdf](https://loevlie.github.io/cv/loevlie-cv-latest.pdf)
+
+A short industry CV (two-column, denser) lives at:
+[loevlie.github.io/cv/loevlie-cv-industry-latest.pdf](https://loevlie.github.io/cv/loevlie-cv-industry-latest.pdf)
+*(coming soon — currently builds in the same repo)*
+
+::: {.column-page}
+<embed src="https://loevlie.github.io/cv/loevlie-cv-latest.pdf#view=FitH"
+       type="application/pdf" width="100%" height="800px">
+:::
+
+## Source
+
+Source LaTeX is in [github.com/loevlie/cv](https://github.com/loevlie/cv).
+The CV is generated from `main.tex` + `publications.bib` via
+`biblatex+biblatex-publist`, with `hyperxmp` for Adobe Bridge / Google
+Scholar / ATS metadata, `bookmark` for navigable Acrobat outline, and
+`xurl` for clean URL line-breaking.
+
+Citation counts are refreshed weekly by a GitHub Action that queries
+Semantic Scholar (with OpenAlex fallback) — see
+[`scripts/fetch_citations.py`](https://github.com/loevlie/cv/blob/main/scripts/fetch_citations.py).

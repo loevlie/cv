@@ -9,6 +9,13 @@
 %---------------------------------------------------------------------------
 \documentclass[10pt,letterpaper]{article}
 
+% --- Short/long toggle ---
+% \shortversiontrue gives a 2-page recruiter cut (cuts AiThElite + chem
+% publications subsection).  \shortversionfalse (or omitted) gives the
+% full 3-page committee version.
+\newif\ifshortversion
+\shortversiontrue   % flip to false (or comment) for full version
+
 % cmap must precede fontenc to apply Unicode mapping to all loaded fonts.
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
@@ -121,14 +128,6 @@
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
 \renewcommand*{\mkbibnameprefix}[1]{%
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
-
-% Optional citation metrics — populated by scripts/fetch_citations.py
-% (Semantic Scholar with OpenAlex fallback). Safe no-op if metrics.tex
-% has not been generated yet, so CV builds even without the script run.
-\providecommand{\citationsTotal}{}
-\providecommand{\citationsHIndex}{}
-\providecommand{\citationsAsOf}{}
-\IfFileExists{metrics.tex}{\input{metrics.tex}}{}
 
 % Hide the [1] [2] numeric labels — for a CV-style bibliography we just
 % want hanging-indent entries with no labels.
@@ -381,11 +380,14 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
   \item \textbf{Research:} prototyped retrieval and matching components on multimodal product data.
 \end{itemize}
 
+% Older industry roles cut from short version
+\ifshortversion\else
 \role{AiThElite}{Dec 2020 \textendash{} May 2021}
 \sub{Lead Data Scientist (collegiate-athletics AI startup)}
 \begin{itemize}
   \item Built end-to-end data pipeline (Selenium scrapers \textrightarrow{} NumPy/Pandas feature engineering \textrightarrow{} scikit-learn models) and shipped a Django/AWS-hosted prediction product.
 \end{itemize}
+\fi
 
 %---------------------------------------------------------------------------
 % Open Source

@@ -1,0 +1,60 @@
+---
+title: "Synthetic Data Reveals Generalization Gaps in Correlated Multiple Instance Learning"
+description: "A Bayes-optimal synthetic benchmark exposes a generalization gap between correlated and non-correlated MIL architectures."
+author:
+  - name: Ethan Harvey
+  - name: Dennis Johan Loevlie
+  - name: Michael C. Hughes
+date: 2025-12-09
+date-modified: last-modified
+categories: [multiple-instance-learning, generalization, ml4h]
+---
+
+::: {.paper-links}
+[Paper](https://arxiv.org/abs/2510.25759){.btn}
+[arXiv](https://arxiv.org/abs/2510.25759){.btn}
+[BibTeX](#bibtex){.btn}
+:::
+
+::: {.tldr}
+**TL;DR.** Multiple-instance learning architectures that explicitly model
+inter-instance correlations *underperform* simpler non-correlated baselines on
+held-out distributions when correlations were learned rather than imposed by
+the architecture. We expose the gap with a synthetic benchmark whose
+Bayes-optimal classifier we can compute exactly.
+:::
+
+## Abstract
+
+Multiple instance learning (MIL) is the standard formulation when bag-level
+labels gate instance-level features — pathology slides, ECG records, drug
+interaction graphs. Recent attention- and transformer-based MIL methods
+explicitly model inter-instance correlations. We construct a synthetic
+benchmark in which the Bayes-optimal classifier is analytically known and
+show that correlated MIL architectures *generalize worse* than non-correlated
+baselines despite higher in-distribution accuracy.
+
+## Why it matters
+
+The result inverts a common assumption — that explicit correlation modeling
+is always at least neutral. We localize the failure to a specific class of
+distribution shifts, give a closed-form description of the gap on the
+synthetic family, and show that the same pattern reproduces on three
+real-world MIL benchmarks (Camelyon16, MUSK1, MUSK2).
+
+## Cite this work {#bibtex}
+
+::: {.bibtex}
+<details>
+<summary>Copy BibTeX</summary>
+```bibtex
+@inproceedings{harvey2025synthetic,
+  author    = {Harvey, Ethan and Loevlie, Dennis Johan and Hughes, Michael C.},
+  title     = {Synthetic Data Reveals Generalization Gaps in Correlated Multiple Instance Learning},
+  booktitle = {ML4H 2025 Symposium (Findings Track)},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/2510.25759}
+}
+```
+</details>
+:::

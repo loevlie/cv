@@ -1,0 +1,104 @@
+%---------------------------------------------------------------------------
+% Cold-outreach letter template — same brand as cover letter
+% Per Eugene Vinitsky's three principles + v3 outreach research:
+%   1. Demonstrate familiarity (specific paper, specific section)
+%   2. Make a SPECIFIC ask (15 min, a pointer, a question)
+%   3. Provide credentials if junior (ONE link, in signature)
+% Body should be UNDER 80 words.
+%---------------------------------------------------------------------------
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.0in,top=0.7in,bottom=0.85in]{geometry}
+
+\usepackage[scale=0.97]{plex-serif}
+\usepackage[scale=0.91]{plex-sans}
+\usepackage[scale=0.89]{plex-mono}
+\usepackage[protrusion=true,expansion=true,tracking=true,kerning=true,final]{microtype}
+\AtBeginDocument{\figureversion{osf}}
+\frenchspacing
+
+\linespread{1.20}
+\setlength{\parindent}{0pt}
+
+\usepackage{xcolor}
+\definecolor{accent}{HTML}{0A2540}
+\definecolor{accentlight}{HTML}{2563A8}
+\definecolor{meta}{HTML}{6B6B6B}
+\definecolor{rule}{HTML}{C8C8C8}
+\color{black!90}
+
+\usepackage[hidelinks, colorlinks=true, urlcolor=accentlight, linkcolor=accentlight]{hyperref}
+\usepackage{xurl}
+\usepackage{parskip}
+\setlength{\parskip}{0.6\baselineskip}
+
+\newcommand{\bdash}{\,\textemdash\,}
+
+\begin{document}
+
+%---------------------------------------------------------------------------
+% This is a TEMPLATE. The actual cold email is the body text below; the
+% PDF version exists only for cases where the recipient explicitly asked
+% for an attachment OR you want a print-quality copy of the same content.
+%---------------------------------------------------------------------------
+
+\textbf{Subject:} Question on \S[3.2] of ``[Paper Title]''
+
+\vspace{1em}
+
+Hi [First Name],
+
+\vspace{0.3em}
+
+Your [paper / talk] on [specific topic] showed [one concrete fact: e.g.,
+``the modality gap collapses when you co-train with the masked
+objective'']. I'm working on [one-line: e.g., ``tabular foundation
+models with image-column inputs''] and ran into [specific connection:
+e.g., ``the same gap pattern but only on heterogeneous schemas''].
+
+\vspace{0.3em}
+
+Could I send you a 1-page write-up of what I found and ask one
+question? Happy to do it async \bdash{} no call needed unless you'd prefer.
+
+\vspace{0.3em}
+
+Dennis Loevlie
+
+\vspace{0.5em}
+
+{\sffamily\footnotesize\color{meta}%
+ELLIS PhD candidate \bdash{} CWI (TRLLab) \& UvA (AMLab) \bdash{} \\
+\href{https://dennisloevlie.com}{dennisloevlie.com} \bdash{}
+CV: \href{https://loevlie.github.io/cv/loevlie-cv-latest.pdf}{loevlie.github.io/cv} \bdash{}
+[arxiv link OR github repo of most relevant work]
+}
+
+\vspace{2em}
+{\color{rule}\rule{\linewidth}{0.4pt}}
+\vspace{1em}
+
+{\sffamily\footnotesize\color{meta}%
+\textit{Variants from the v3 outreach research:}%
+\begin{itemize}
+\item \textbf{Collaboration ask:} replace closing with ``I have [data / compute / a complementary result]; would a 4-week collaboration on [specific output, e.g., `a workshop paper at TRL'] interest you?''
+\item \textbf{Referral / informational chat:} ``I'm applying for [program / position] this cycle. If you'd be open to a 15-minute call on [date range], I'd value your read on whether my [project X] would land at [team Y].''
+\item \textbf{Post-talk follow-up:} ``Thanks for the talk at [venue] on [date] \bdash{} your point on [specific moment] connected to [your work]. [One question]. If you have 15 minutes in the next two weeks, I'd love to follow up.''
+\end{itemize}
+
+\textit{Anti-patterns to avoid:} ``I hope this email finds you well'' \bdash{} ``I've been a huge fan of your work'' \bdash{} ``Could I pick your brain'' \bdash{} multiple attachments on first email \bdash{} more than two follow-ups.
+
+\textit{Subject line patterns that get opened:}\\
+``Question on \S3.2 of [Paper]'' \bdash{}
+``Reproduced your [X] result \bdash{} small finding'' \bdash{}
+``After your NeurIPS talk: one question on [X]'' \bdash{}
+``Collab idea: [your method] on [their benchmark]''
+}
+
+\bdash{}
+
+\renewcommand{\bdash}{\,\textemdash\,}
+\end{document}

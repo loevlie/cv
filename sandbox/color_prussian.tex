@@ -51,8 +51,8 @@
 % Palette — defined before hyperref so accentlight is in scope for link colors.
 % \colorlet tint ramp gives a coherent scale from the same accent base
 % rather than picking arbitrary hex codes.
-\definecolor{accent}{HTML}{0A2540}
-\definecolor{accentlight}{HTML}{2563A8}
+\definecolor{accent}{HTML}{003153}  % Prussian blue
+\definecolor{accentlight}{HTML}{1E5288}  % Prussian light
 \definecolor{body}{HTML}{1A1A1A}
 \definecolor{meta}{HTML}{6B6B6B}
 \definecolor{rule}{HTML}{C8C8C8}
@@ -121,14 +121,6 @@
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
 \renewcommand*{\mkbibnameprefix}[1]{%
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
-
-% Optional citation metrics — populated by scripts/fetch_citations.py
-% (Semantic Scholar with OpenAlex fallback). Safe no-op if metrics.tex
-% has not been generated yet, so CV builds even without the script run.
-\providecommand{\citationsTotal}{}
-\providecommand{\citationsHIndex}{}
-\providecommand{\citationsAsOf}{}
-\IfFileExists{metrics.tex}{\input{metrics.tex}}{}
 
 % Hide the [1] [2] numeric labels — for a CV-style bibliography we just
 % want hanging-indent entries with no labels.
