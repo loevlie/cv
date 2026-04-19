@@ -115,8 +115,11 @@
 
 % Bold the highlighted-name parts (per author+an = {N=highlight} in .bib).
 % Per Bringhurst rule 3.2.1 we don't double-emphasize — bold only.
+% Equal-contribution authors get a trailing \textsuperscript{*} via the
+% `equalcontrib` annotation; pair with note = {* Equal contribution.}.
 \renewcommand*{\mkbibnamefamily}[1]{%
-  \ifitemannotation{highlight}{\textbf{#1}}{#1}}
+  \ifitemannotation{highlight}{\textbf{#1}}{#1}%
+  \ifitemannotation{equalcontrib}{\textsuperscript{*}}{}}
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
 \renewcommand*{\mkbibnameprefix}[1]{%
