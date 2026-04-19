@@ -123,12 +123,15 @@
   \ifitemannotation{highlight}{\textbf{#1}}{#1}}
 
 % Optional citation metrics — populated by scripts/fetch_citations.py
-% (Semantic Scholar with OpenAlex fallback). Safe no-op if metrics.tex
-% has not been generated yet, so CV builds even without the script run.
-\providecommand{\citationsTotal}{}
-\providecommand{\citationsHIndex}{}
-\providecommand{\citationsAsOf}{}
-\IfFileExists{metrics.tex}{\input{metrics.tex}}{}
+% (Semantic Scholar with OpenAlex fallback). If metrics.tex is missing
+% (fresh clone, never ran the script), define empty fallbacks so the CV
+% still builds. metrics.tex uses \newcommand, so we can't \providecommand
+% first or the \newcommand will clash on "already defined".
+\IfFileExists{metrics.tex}{\input{metrics.tex}}{%
+  \newcommand{\citationsTotal}{}%
+  \newcommand{\citationsHIndex}{}%
+  \newcommand{\citationsAsOf}{}%
+}
 
 % Hide the [1] [2] numeric labels — for a CV-style bibliography we just
 % want hanging-indent entries with no labels.
@@ -274,7 +277,7 @@
 \section{Education}
 
 \role{Centrum Wiskunde \& Informatica \& University of Amsterdam}{Incoming, Aug 2026 \textendash{}}
-PhD in Computer Science, \textit{ELLIS PhD Program}. Advisors: Madelon Hulsebos (TRLab, CWI) and Jan-Willem van de Meent (AMLab, UvA). Focus: multimodal tabular foundation models.
+PhD in Computer Science. \textbf{Advised by \href{https://madelonhulsebos.github.io/}{Madelon Hulsebos} (TRLab, CWI); co-advised by \href{https://jwvdm.github.io/}{Jan-Willem van de Meent} (AMLab, UvA), via the \href{https://ellis.eu/phd-postdoc}{ELLIS PhD Program}.} Focus: multimodal tabular foundation models; probabilistic deep learning.
 
 \role{Tufts University, Medford, MA}{Sep 2024 \textendash{} May 2026 (expected)}
 M.S.\ in Computer Science. GPA: 3.95\,/\,4.00. \href{https://www.loevliedl.com/static/Portfolio/PDF/SSR_TSRPT.pdf}{Transcript}.
