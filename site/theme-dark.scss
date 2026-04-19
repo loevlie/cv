@@ -11,12 +11,12 @@ $rule:        #1F2832;
 $accent:      $navy;
 $accent-hover:#9DC3FF;
 
-$primary:                 $accent;
-$body-bg:                 $paper;
-$body-color:              $ink;
-$link-color:              $accent;
-$link-hover-color:        $accent-hover;
-$border-color:            $rule;
+$primary:                 $accent !default;
+$body-bg:                 $paper !default;
+$body-color:              $ink !default;
+$link-color:              $accent !default;
+$link-hover-color:        $accent-hover !default;
+$border-color:            $rule !default;
 
 $font-family-serif:       "IBM Plex Serif", Georgia, serif;
 $font-family-sans-serif:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;

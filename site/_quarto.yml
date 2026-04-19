@@ -60,4 +60,4 @@ format:
 
 # One bibliography to rule them all — same source as the LaTeX CV
 bibliography: ../publications.bib
-csl: assets/acm-sig-proceedings.csl
+# Quarto ships a default ACM-style CSL; explicit file optional.

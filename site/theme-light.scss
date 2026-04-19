@@ -12,12 +12,12 @@ $accent:      $navy;
 $accent-hover:#1B4F84;
 
 // Bootstrap overrides
-$primary:                 $accent;
-$body-bg:                 $paper;
-$body-color:              $ink;
-$link-color:              $accent;
-$link-hover-color:        $accent-hover;
-$border-color:            $rule;
+$primary:                 $accent !default;
+$body-bg:                 $paper !default;
+$body-color:              $ink !default;
+$link-color:              $accent !default;
+$link-hover-color:        $accent-hover !default;
+$border-color:            $rule !default;
 
 // Typography (Plex everywhere; serif body, sans headings — Distill-flavored)
 $font-family-serif:       "IBM Plex Serif", Georgia, serif;
