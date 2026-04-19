@@ -118,7 +118,7 @@
   isbn      = false,
   url       = false
 ]{biblatex}
-\addbibresource{publications.bib}
+\addbibresource{../publications.bib}
 
 % Bold the highlighted-name parts (per author+an = {N=highlight} in .bib).
 % Per Bringhurst rule 3.2.1 we don't double-emphasize — bold only.
@@ -297,8 +297,10 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
 \subsection{Machine Learning}
 \printbibliography[heading=none, keyword=ml]
 
+\ifshortversion\else
 \subsection{Chemistry \& Computational Science}
 \printbibliography[heading=none, keyword=chem]
+\fi
 
 %---------------------------------------------------------------------------
 % Research Experience
@@ -321,6 +323,8 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
   \item Investigating why vision-language models (Qwen3-\acro{VL}) and open-vocabulary segmentation models (\acro{SAM}\,3) fail at object counting in dense scenes; designing tool-use and trajectory-based methods drawing on cognitive-science accounts of human counting.
 \end{itemize}
 
+% Older ChemE research positions cut from short version
+\ifshortversion\else
 \role{University of Pittsburgh \bdash{} CANELa Lab}{Jun 2021 \textendash{} Jan 2023}
 \sub{Graduate Researcher with Prof.\ Giannis Mpourmpakis}
 \begin{itemize}
@@ -335,6 +339,7 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
   \item Trained a \acro{CNN} classifier to extract experimental information from microscopy images; rebuilt Mathematica analysis tooling as fast, interactive Python.
   \item Released \href{https://tinyurl.com/yzpperdc}{\monofam nb\_search}, an open-source Python package for searching and indexing across Jupyter notebooks.
 \end{itemize}
+\fi
 
 %---------------------------------------------------------------------------
 % Awards

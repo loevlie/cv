@@ -45,7 +45,15 @@
 #show link: set text(fill: navy)
 
 // --- Title slide ----------------------------------------------------------
-#title-slide()
+#title-slide[
+  #text(size: 36pt, fill: navy, weight: "bold")[Multimodal Tabular Foundation Models]
+  #v(0.4em)
+  #text(size: 22pt, fill: mute)[Pretraining strategies for heterogeneous schemas]
+  #v(2em)
+  #text(size: 18pt)[Dennis Johan Loevlie]
+  #v(0.2em)
+  #text(size: 14pt, fill: mute)[ELLIS PhD \@ CWI \& UvA #h(0.6em)·#h(0.6em) #datetime.today().display()]
+]
 
 // --- Content --------------------------------------------------------------
 

@@ -35,3 +35,4 @@ variants/*.pdf
 # Quarto build output
 site/_site/
 site/.quarto/
+slides/talk.pdf
