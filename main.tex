@@ -323,7 +323,7 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
 \begin{itemize}
   \item Co-led (equal contribution) the \acro{CHIL} 2026 multi-dataset benchmark of multiple instance learning (\acro{MIL}) for 3D neuroimage classification across 7 \acro{MRI}/\acro{CT} datasets and 9 tasks; showed a simple mean-pooling \acro{MIL} baseline matches or outperforms recent attention-based \acro{MIL} and 3D \acro{CNN} methods on 4 of 6 moderate-sized tasks while being \textbf{25$\times$ faster to train}.
   \item Contributed to the \acro{ML4H} 2025 study on a \emph{generalization gap} between correlated and non-correlated \acro{MIL} architectures: implemented \acro{SmAP} (the newest NeurIPS \acro{MIL} method) into the lab codebase, reduced a training-example bottleneck from \emph{quadratic to linear scaling} to unlock experiments on a substantially larger semi-synthetic dataset, and helped design the synthetic benchmark with a Bayes-optimal upper bound.
-  \item Designed attention- and transformer-based \acro{MIL} pipelines on 3D \acro{MRI}/\acro{CT} for early indicators of dementia and stroke; trained on Tufts \acro{HPC} with multi-\acro{GPU} distributed setups.
+  \item Designed convolutional and transformer-based classification pipelines on 3D \acro{MRI}/\acro{CT} for early indicators of dementia and stroke; trained on Tufts \acro{HPC} with multi-\acro{GPU} distributed setups.
   \item Developing a regularization method to encourage interpretable attention scores, and methods for supervised learning under noisy labels.
 \end{itemize}
 
@@ -405,9 +405,10 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
 \section{Open Source}
 
 \begin{itemize}
-  \item \href{https://github.com/huggingface/transformers}{\monofam huggingface/transformers} \,\textemdash\, contributor; merged PRs on model implementations and bug fixes
-  \item \href{https://github.com/Franblueee/torchmil}{\monofam Franblueee/torchmil} \,\textemdash\, core contributor; multiple merged PRs across the multiple-instance-learning library
+  \item \href{https://github.com/huggingface/transformers}{\monofam huggingface/transformers} \,\textemdash\, contributor; merged fix restoring \monofam{torch.compile} compatibility for Mask2Former and OneFormer
+  \item \href{https://github.com/Franblueee/torchmil}{\monofam Franblueee/torchmil} \,\textemdash\, core contributor; added the ML4H 2025 synthetic dataset and Bayes-optimal upper bound, plus additional merged PRs across the multiple-instance-learning library
   \item \href{https://github.com/loevlie/neuropt}{\monofam loevlie/neuropt} \,\textemdash\, author; \acro{LLM}-guided neural architecture search and hyperparameter tuning
+  \item \href{https://github.com/loevlie/gpt4readability}{\monofam loevlie/gpt4readability} \,\textemdash\, author; \acro{GPT}-4-powered README generation and code-improvement suggestions for Python repositories
   \item \href{https://huggingface.co/spaces/JohanDL/Depth-Anything-Video}{\monofam JohanDL/Depth-Anything-Video} \,\textemdash\, author; Hugging Face Community Grant recipient
 \end{itemize}
 
@@ -434,7 +435,7 @@ Industry volunteer, youth robotics team building accessibility tools for blind s
 %---------------------------------------------------------------------------
 \section{Technical Skills}
 
-\noindent\textbf{Languages} \quad Python $\cdot$ C++ $\cdot$ JavaScript $\cdot$ MATLAB \\
+\noindent\textbf{Languages} \quad Python $\cdot$ C++ $\cdot$ Java $\cdot$ JavaScript $\cdot$ MATLAB \\
 \textbf{\acro{ML} / AI} \quad PyTorch $\cdot$ JAX $\cdot$ Hugging Face (Transformers, Datasets, \acro{TRL}, \acro{PEFT}) $\cdot$ \acro{GRPO} / \acro{DPO} $\cdot$ multimodal learning $\cdot$ \acro{RL} post-training $\cdot$ multiple instance learning $\cdot$ computer vision \\
 \textbf{Engineering} \quad \acro{FSDP} $\cdot$ DeepSpeed $\cdot$ vLLM $\cdot$ FlashAttention $\cdot$ Triton $\cdot$ \acro{CUDA} $\cdot$ TensorRT $\cdot$ \acro{SLURM} / \acro{HPC} $\cdot$ multi-\acro{GPU} distributed training $\cdot$ Docker $\cdot$ \acro{AWS}
 
