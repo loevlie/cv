@@ -35,6 +35,7 @@ jobs:
           cp main.pdf dist/loevlie-cv-latest.pdf
           DATE=$(date +%Y-%m-%d)
           cp main.pdf "dist/loevlie-cv-$DATE.pdf"
+          cp assets/Final_Tufts_Transcript.pdf dist/Final_Tufts_Transcript.pdf
           ls -la dist/
 
       - name: Upload artifact
