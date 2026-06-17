@@ -270,7 +270,7 @@
 {\sansfam\fontsize{22pt}{26pt}\selectfont\bfseries\color{accent} Dennis Johan Loevlie}\\[2pt]
 % Research-interests one-liner. Olah-style positioning — lets advisors
 % and recruiters triangulate the candidate in 2 seconds.
-{\footnotesize\itshape\color{meta}Multimodal foundation models for tabular data \,\textperiodcentered\, probabilistic deep learning}\\[3pt]
+{\footnotesize\itshape\color{meta}Multimodal foundation models for tabular data}\\[3pt]
 {\sansfam\footnotesize\color{meta}%
 +1\,724\,841\,8769 \,\textperiodcentered\,
 \href{mailto:dennis.loevlie@tufts.edu}{dennis.loevlie@tufts.edu} \,\textperiodcentered\,
@@ -323,7 +323,7 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
 \begin{itemize}
   \item Co-led (equal contribution) the \acro{CHIL} 2026 multi-dataset benchmark of multiple instance learning (\acro{MIL}) for 3D neuroimage classification across 7 \acro{MRI}/\acro{CT} datasets and 9 tasks; showed a simple mean-pooling \acro{MIL} baseline matches or outperforms recent attention-based \acro{MIL} and 3D \acro{CNN} methods on 4 of 6 moderate-sized tasks while being \textbf{25$\times$ faster to train}.
   \item Contributed to the \acro{ML4H} 2025 study on a \emph{generalization gap} between correlated and non-correlated \acro{MIL} architectures: implemented \acro{SmAP} (the newest NeurIPS \acro{MIL} method) into the lab codebase, reduced a training-example bottleneck from \emph{quadratic to linear scaling} to unlock experiments on a substantially larger semi-synthetic dataset, and helped design the synthetic benchmark with a Bayes-optimal upper bound.
-  \item Designed convolutional and transformer-based classification pipelines on 3D \acro{MRI}/\acro{CT} for early indicators of dementia and stroke; trained on Tufts \acro{HPC} with multi-\acro{GPU} distributed setups.
+  \item Designed convolutional and transformer-based classification pipelines on 3D \acro{MRI}/\acro{CT} for early indicators of dementia and stroke; trained on Tufts \acro{HPC}, parallelizing experiments across many \acro{GPU}s via \acro{SLURM} job arrays.
   \item Developing a regularization method to encourage interpretable attention scores, and methods for supervised learning under noisy labels.
 \end{itemize}
 
@@ -375,7 +375,8 @@ B.S.\ in Chemical Engineering, \textit{cum laude}, with Honors.
 \role{Massachusetts General Hospital \& Harvard Medical School}{2025 \textendash{} Present}
 \sub{Machine Learning Researcher \bdash{} computational pathology}
 \begin{itemize}
-  \item \textbf{Systems:} building segmentation models for colon-cancer pathology slides at gigapixel resolution; pipeline integrates with clinical workflows for downstream evaluation.
+  \item \textbf{Models:} fine-tuned HoVer-NeXt on our in-house prostate epithelial-nuclei annotations for nuclear instance segmentation, and implemented \href{https://github.com/TissueImageAnalytics/cerberus}{Cerberus} for gland segmentation on gigapixel prostate-cancer slides.
+  \item \textbf{Systems:} composing both models into an end-to-end pipeline that extracts quantitative tissue features as an objective alternative to subjective Gleason scoring for prostate-cancer diagnosis; integrates with clinical workflows for downstream evaluation.
   \item \textbf{Research:} dataset-construction methodology and collaboration with pathologists to ground model outputs in expert-validated labels.
 \end{itemize}
 
@@ -443,7 +444,7 @@ Industry volunteer, youth robotics team building accessibility tools for blind s
 \section{Technical Skills}
 
 \noindent\textbf{Languages} \quad Python $\cdot$ C++ $\cdot$ Java $\cdot$ JavaScript $\cdot$ MATLAB \\
-\textbf{\acro{ML} / AI} \quad PyTorch $\cdot$ JAX $\cdot$ Hugging Face (Transformers, Datasets, \acro{TRL}, \acro{PEFT}) $\cdot$ \acro{GRPO} / \acro{DPO} $\cdot$ multimodal learning $\cdot$ \acro{RL} post-training $\cdot$ multiple instance learning $\cdot$ computer vision \\
-\textbf{Engineering} \quad \acro{FSDP} $\cdot$ DeepSpeed $\cdot$ vLLM $\cdot$ FlashAttention $\cdot$ Triton $\cdot$ \acro{CUDA} $\cdot$ TensorRT $\cdot$ \acro{SLURM} / \acro{HPC} $\cdot$ multi-\acro{GPU} distributed training $\cdot$ Docker $\cdot$ \acro{AWS}
+\textbf{\acro{ML} / AI} \quad PyTorch $\cdot$ JAX $\cdot$ Hugging Face (Transformers, Datasets, \acro{TRL}, \acro{PEFT}) $\cdot$ multimodal learning $\cdot$ \acro{RL} post-training $\cdot$ multiple instance learning $\cdot$ computer vision \\
+\textbf{Engineering} \quad \acro{CUDA} $\cdot$ TensorRT $\cdot$ \acro{SLURM} / \acro{HPC} $\cdot$ Docker $\cdot$ \acro{AWS}
 
 \end{document}
